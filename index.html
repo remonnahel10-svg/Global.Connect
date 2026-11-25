@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Global Connect – Global Pharmaceutical Group</title>
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/htm@3.1.1/dist/htm.umd.js"></script>
+<style>
+:root{--bg:#F8FAFC;--card:#fff;--bd:#e2e8f0;--tx:#0f172a;--mu:#64748b;--navy:#1E293B;--teal:#F26522;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1220;--card:#14203a;--bd:#24365a;--tx:#e8eef9;--mu:#94a3b8;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0b1220;--card:#14203a;--bd:#24365a;--tx:#e8eef9;--mu:#94a3b8;color-scheme:dark}
+body{background:radial-gradient(900px 500px at 85% -10%,rgba(247,148,29,.38),transparent 60%),radial-gradient(700px 500px at -10% 35%,rgba(0,139,155,.32),transparent 60%),radial-gradient(800px 600px at 50% 115%,rgba(107,63,176,.5),transparent 60%),linear-gradient(160deg,#0f0b1f,#1a1033 50%,#141a2e);background-attachment:fixed;color:#fff;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;margin:0}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:repeating-linear-gradient(90deg,transparent 0 46px,rgba(247,200,115,.06) 46px 47px)}
+.card{background:var(--card);color:var(--tx);box-shadow:0 8px 24px rgba(0,0,0,.28);border:1px solid var(--bd);border-radius:14px;padding:14px}
+.mu{color:#cbd5e1}.card .mu{color:var(--mu)} .btn{background:linear-gradient(90deg,#F26522,#F7941D);color:#fff;border-radius:10px;padding:8px 14px;font-weight:600;font-size:14px}
+.btn2{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:10px;padding:6px 10px;font-size:13px;font-weight:500}
+.inp{width:100%;background:var(--bg);border:1px solid var(--bd);border-radius:10px;padding:9px 11px;font-size:14px;color:var(--tx)}
+.hd{background:linear-gradient(135deg,#14110c,#2a1e0b 55%,#6b4a10);color:#fff}
+header.hd{border-bottom:2px solid #F7941D}
+.card .btn2{background:transparent;color:var(--tx);border-color:var(--bd)}
+.bg-teal-500,.bg-teal-600,.\!bg-teal-600{background:#F26522!important}.bg-teal-300{background:#F7941D!important}
+.text-teal-600{color:#E8590C!important}.bg-teal-100{background:#FFF1E6!important}.text-teal-900{color:#7A2E0A!important}
+.border-teal-500,.border-teal-600,.\!border-teal-500,.\!border-teal-600{border-color:#F26522!important}
+</style></head>
+<body><div id="root"></div>
+<script>
+const {useState}=React, html=htm.bind(React.createElement);
+const P={check:"M20 6 9 17l-5-5",x:"M18 6 6 18M6 6l12 12",mail:"M3 5h18v14H3zM3 7l9 6 9-6",phone:"M22 17v3a2 2 0 0 1-2 2A19 19 0 0 1 2 4a2 2 0 0 1 2-2h3l2 5-2 2a14 14 0 0 0 6 6l2-2 5 2z",bell:"M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21h4",spark:"M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z",shield:"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z",alert:"M12 3 2 20h20zM12 10v4M12 17h.01",send:"M22 2 11 13M22 2l-7 20-4-9-9-4z",up:"M12 19V5M5 12l7-7 7 7",lock:"M5 11h14v10H5zM8 11V7a4 4 0 0 1 8 0v4"};
+const I=({n,s=16})=>html`<svg width=${s} height=${s} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="inline shrink-0"><path d=${P[n]}/></svg>`;
+const DEPTS={
+Marketing:{team:[["Dr. Hala Mostafa","Marketing Director","All GIT brands"],["Karim Adel","Senior Product Manager","Refluxa, Gastro-Pro"],["Nour Samir","Brand Manager","ProbioMax, Digestin"]],q:[["Q1","Refluxa launch push to GI specialists"],["Q2","Gastro-Pro IBS awareness campaign"],["Q3","ProbioMax pediatric program"],["Q4","Digestin loyalty & year-end promo"]],up:["Refluxa visual comparison aid in design","Promo kit v3.2 approved for Q4"]},
+"Medical Affairs":{team:[["Dr. Mona Farouk","Medical Director","All brands"],["Dr. Tarek Hassan","Medical Advisor – GIT","Refluxa, Gastro-Pro"],["Dr. Salma Reda","Pharmacovigilance Officer","Safety & AE reports"]],q:[["Q1","Refluxa monograph update"],["Q2","IBS guideline briefing"],["Q3","Advisory board – Egypt GI"],["Q4","Real-world evidence summary"]],up:["New indication label approved (Refluxa)","Updated Gastro-Pro safety leaflet"]},
+"PR & Events":{team:[["Yasmine Gamal","PR & Events Manager","National congresses"],["Omar Nabil","Events Coordinator","Alexandria & Delta"]],q:[["Q1","GI Update Dinner – Alexandria"],["Q2","Regional IBS Symposium"],["Q3","Hybrid webinar series"],["Q4","Annual GI Congress booth"]],up:["Venue shortlist for Q1 open for rep input","Speaker line-up locked for Q2"]},
+"HR & Training":{team:[["Ahmed Lotfy","HR & Training Manager","Field development"],["Dina Mansour","Learning Specialist","Product & selling skills"]],q:[["Q1","Refluxa certification"],["Q2","Coaching-in-the-field"],["Q3","Digital detailing skills"],["Q4","Annual performance review"]],up:["New e-learning module live","Leave calendar for Q1 open"]},
+Management:{team:[["Dr. Walid Sherif","General Manager","Commercial strategy"],["Rania Fouad","Sales Director","National field force"],["Hossam Ali","Regional Sales Manager","Alexandria & Delta"]],q:[["Q1","Launch excellence"],["Q2","Market share defense"],["Q3","Territory optimization"],["Q4","Budget & planning FY27"]],up:["Town hall: 3 Dec","Top-rep incentive trip announced"]}};
+const FORMS={Marketing:["Product Name","Target Specialty","Competitor Insight"],"Medical Affairs":["Scientific Query","Product Name","Doctor / Specialty"],"PR & Events":["Event / Venue Proposal","Target Audience (HCPs)","Preferred Date"],"HR & Training":["Training Need / Feedback","Skill Area","Urgency"],Management:["Proposal Title","Business Impact","Region"]};
+const SC={Received:"bg-slate-200 text-slate-800","Under Review":"bg-amber-100 text-amber-800","Approved / Feedback":"bg-emerald-100 text-emerald-800",Pending:"bg-amber-100 text-amber-800",Confirmed:"bg-emerald-100 text-emerald-800",Declined:"bg-rose-100 text-rose-800"};
+const Logo=({s=34})=>html`<svg width=${s} height=${s} viewBox="0 0 64 64" fill="none"><defs><linearGradient id="gO" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#F26522"/><stop offset="1" stopColor="#F7941D"/></linearGradient><linearGradient id="gT" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#008B9B"/><stop offset="1" stopColor="#2BC4D4"/></linearGradient><linearGradient id="gP" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#6B3FB0"/><stop offset="1" stopColor="#3B2366"/></linearGradient></defs><path d="M54 20A25 25 0 1 0 56 36" stroke="url(#gO)" strokeWidth="8" strokeLinecap="round"/><path d="M45 28A14 14 0 1 0 46 40" stroke="url(#gT)" strokeWidth="7" strokeLinecap="round"/><circle cx="38" cy="33" r="8" fill="url(#gP)"/></svg>`;
+const Brand=({s=34})=>html`<div className="flex items-center gap-2"><${Logo} s=${s}/><div className="leading-none"><div className="font-extrabold tracking-wide" style=${{fontSize:s*0.5}}>GLOBAL</div><div style=${{fontSize:s*0.24,letterSpacing:1}}>PHARMACEUTICAL</div><div style=${{fontSize:s*0.2,letterSpacing:5,color:"#F7941D"}}>GROUP</div></div><div className="ml-1 pl-3 font-semibold" style=${{borderLeft:"1px solid #F7941D",color:"#F7C873",fontSize:s*0.45}}>Connect</div></div>`;
+const Badge=({s})=>html`<span className=${"text-xs font-semibold px-2 py-0.5 rounded-full "+(SC[s]||"")}>${s}</span>`;
+const DOCS=[["Dr. Amr Fathy","Gastroenterologist","12 Nov – Reviewed Refluxa efficacy data; asked for head-to-head comparison vs Competitor X."],["Dr. Laila Nasser","Internal Medicine","03 Nov – Samples of ProbioMax delivered; interested in pediatric use."],["Dr. Sherif Maher","Gastroenterologist","27 Oct – Positive on Gastro-Pro; wants to attend IBS symposium."]];
+const EV0=[["Mar 12","GI Update Dinner","Four Seasons, Alexandria","Dr. Ehab Kamel"],["May 21","Regional IBS Symposium","Helnan Palestine, Alexandria","Prof. Dalia Ragab"],["Sep 17","Hybrid GI Webinar","Zoom / Studio Cairo","Dr. Walid Zaki"],["Nov 28","Annual GI Congress","Cairo ICC","Panel of 5 speakers"]].map((e,i)=>({d:e[0],t:e[1],v:e[2],sp:e[3],A:[{n:"Dr. Amr Fathy",s:"Confirmed"},{n:"Dr. Laila Nasser",s:"Pending"},{n:"Dr. Sherif Maher",s:i?"Pending":"Declined"}],B:[{n:"Dr. Hany Selim",s:"Pending"},{n:"Dr. Rasha Ibrahim",s:"Pending"}]}));
+const TR=[["High","18 reps reported rising HCP demand for a visual comparison tool against Competitor X","Marketing",18,"Alexandria, Cairo, Giza"],["High","12 reps: pharmacies report Refluxa 20 mg stock-outs in Delta region","Management",12,"Delta, Tanta"],["Medium","9 reps: HCPs ask for pediatric dosing guidance for ProbioMax","Medical Affairs",9,"Cairo, Alexandria"],["Low","5 reps suggest evening webinars to improve attendance","PR & Events",5,"Nationwide"]];
+
+function App(){
+const [tab,setTab]=useState("Hub"),[toast,setToast]=useState(""),[dept,setDept]=useState("Marketing");
+const [subs,setSubs]=useState([{id:101,d:"Marketing",t:"Visual comparison aid vs Competitor X",s:"Under Review"},{id:102,d:"HR & Training",t:"Request: objection-handling workshop",s:"Received"}]);
+const [qs,setQs]=useState([]),[faq,setFaq]=useState([["Is Refluxa safe in mild renal impairment?","No dose adjustment needed in mild impairment (Monograph §4.2).","MED-2026-014"],["Can Gastro-Pro be taken with food?","Yes; absorption is not clinically affected by meals (Monograph §5.1).","MED-2026-021"]]);
+const [logs,setLogs]=useState([]),[evs,setEvs]=useState(EV0),[evI,setEvI]=useState(0),[pop,setPop]=useState(null);
+const [esc,setEsc]=useState({}),[f,setF]=useState({}),[fd,setFd]=useState("Marketing"),[q,setQ]=useState("");
+const say=m=>{setToast(m);setTimeout(()=>setToast(""),2200)};
+const TABS=["Hub","Submit","Medical AI","Trends","Co-Pilot","Events"];
+const [prof,setProf]=useState(null),[step,setStep]=useState(1),[pf,setPf]=useState({name:"",dept:"Sales",line:"GIT Line",area:"Alexandria"});
+const sel=(k,opts)=>html`<select className="inp" value=${pf[k]} onChange=${e=>setPf({...pf,[k]:e.target.value})}>${opts.map(o=>html`<option key=${o}>${o}</option>`)}</select>`;
+const onboard=html`<div className="min-h-screen flex items-center justify-center p-4"><div className="card w-full max-w-md space-y-3">
+<div className="hd rounded-xl p-4 space-y-1"><${Brand} s=${46}/><div className="text-xs pt-1" style=${{color:"#F7C873"}}>Where the field force meets head office</div></div>
+${step===1?html`<div className="space-y-3"><div><div className="font-semibold">Step 1 of 2 · Who are you?</div><div className="text-xs mu">عرّفنا بنفسك: الاسم والقسم واللاين والمنطقة</div></div>
+<div><label className="text-xs mu">Your name</label><input className="inp" placeholder="e.g. Ahmed Hassan" value=${pf.name} onChange=${e=>setPf({...pf,name:e.target.value})}/></div>
+<div><label className="text-xs mu">Your department</label>${sel("dept",["Sales","Marketing","Medical Affairs","PR & Events","HR & Training","Management"])}</div>
+<div><label className="text-xs mu">Line</label>${sel("line",["GIT Line","Cardio Line","Respiratory Line","CNS Line","Diabetes Line"])}</div>
+<div><label className="text-xs mu">Area</label>${sel("area",["Alexandria","Cairo","Giza","Delta","Canal","Upper Egypt"])}</div>
+<button className="btn w-full" onClick=${()=>pf.name.trim()?setStep(2):say("Please enter your name")}>Next</button></div>`
+:html`<div className="space-y-2"><div><div className="font-semibold">Step 2 of 2 · Which department do you want to contact?</div><div className="text-xs mu">عايز تخاطب قسم إيه؟</div></div>
+${Object.keys(DEPTS).map(d=>html`<button key=${d} className="btn2 w-full text-left !py-3 font-semibold" onClick=${()=>{setProf(pf);setDept(d);setFd(d);setTab("Hub")}}>${d} →</button>`)}
+<button className="text-sm mu underline" onClick=${()=>setStep(1)}>← Back</button></div>`}
+</div>${toast&&html`<div className="fixed left-1/2 -translate-x-1/2 bottom-6 z-40 hd px-4 py-2 rounded-full text-sm">${toast}</div>`}</div>`;
+const D=DEPTS[dept];
+const submit=()=>{const t=Object.values(f).find(Boolean);if(!t)return say("Please fill in at least one field");setSubs([{id:Date.now()%1000+200,d:fd,t,s:"Received"},...subs]);setF({});say("Submitted to "+fd)};
+const next=s=>s==="Received"?"Under Review":s==="Under Review"?"Approved / Feedback":"Received";
+const ask=()=>{if(!q.trim())return;const pv=/adverse|side effect|reaction|rash|nausea|hospital|allerg/i.test(q);
+setQs([{id:qs.length,q,pv,ref:null,st:"Pending Medical Affairs Approval",a:"Based on the approved Refluxa monograph, the recommended regimen is 20 mg once daily for 4–8 weeks. Data show healing rates above 90% at 8 weeks in erosive esophagitis. [Ref: Monograph §4.1, §5.3; Clinical Study RF-203]"},...qs.map(x=>({...x,id:x.id+1}))]);setQ("")};
+const approve=i=>{const x=qs[i],ref="MED-2026-0"+(30+i+faq.length);setQs(qs.map((y,j)=>j===i?{...y,st:"Officially Approved by Medical",ref}:y));setFaq([[x.q,x.a,ref],...faq]);say("Medical sign-off simulated: "+ref)};
+const cyc=(l,i)=>setEvs(evs.map((e,k)=>k!==evI?e:{...e,[l]:e[l].map((g,j)=>j===i?{...g,s:g.s==="Pending"?"Confirmed":g.s==="Confirmed"?"Declined":"Pending"}:g)}));
+const promote=i=>setEvs(evs.map((e,k)=>{if(k!==evI)return e;const g=e.B[i];return{...e,B:e.B.filter((_,j)=>j!==i),A:[...e.A,{...g,s:"Pending"}]}}));
+const [ld,setLd]=useState(0),[lo,setLo]=useState("Discuss new indication"),[ln,setLn]=useState("");
+const [tp,setTp]=useState(""),[rq,setRq]=useState(""),[ng,setNg]=useState("Interest"),[dl,setDl]=useState("");
+const lgOf=d=>logs.find(l=>l.d===d);
+const tipsFor=l=>{const t=[],g=l?l.ng:"Interest";if(g==="Awareness")t.push("Open with a short clinical story and one key benefit.");if(g==="Interest")t.push("Bring the efficacy data and ask which patient type he sees most.");if(g==="Trial")t.push("Ask about his experience with the samples and patient feedback.");if(g==="Negotiation")t.push("Recap the open point from last visit and propose a clear next step.");if(g==="Prescribing")t.push("Thank him, reinforce loyalty and ask about new patient types.");if(l&&l.rq)t.push("Bring what he asked for: "+l.rq+".");if(l&&l.o.includes("event"))t.push("Hand over the invitation and confirm attendance.");if(l&&l.o.includes("samples"))t.push("Deliver the samples and record batch numbers.");t.push("End by agreeing on the date of the next visit.");return t};
+const [rec,setRec]=useState(false),[tr,setTr]=useState(""),[lang,setLang]=useState("en-US"),[an,setAn]=useState(null),recRef=React.useRef(null);
+const startRec=()=>{const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR)return say("Voice not supported in this browser – use the demo button");try{const r=new SR();r.lang=lang;r.continuous=true;r.interimResults=true;const base=tr;r.onresult=e=>{let t="";for(let i=0;i<e.results.length;i++)t+=e.results[i][0].transcript;setTr((base?base+" ":"")+t)};r.onerror=()=>{setRec(false);say("Mic blocked – use the demo button")};r.onend=()=>setRec(false);r.start();recRef.current=r;setRec(true)}catch(e){say("Mic unavailable – use the demo button")}};
+const stopRec=()=>{try{recRef.current&&recRef.current.stop()}catch(e){}setRec(false)};
+const demo=()=>{const w="Dr. Amr said Refluxa works well for his GERD patients but one elderly patient had a mild rash after two weeks. He is comparing it with Competitor X and asked for a head-to-head chart. He would like to attend the March dinner. Please send samples next week.".split(" ");setTr("");setAn(null);let i=0;const t=setInterval(()=>{i++;setTr(w.slice(0,i).join(" "));if(i>=w.length)clearInterval(t)},110)};
+const analyze=()=>{if(!tr.trim())return say("No transcript yet");const T=tr.toLowerCase();setAn({prods:["Refluxa","Gastro-Pro","ProbioMax","Digestin"].filter(p=>T.includes(p.toLowerCase())),pv:/rash|adverse|side effect|reaction|nausea|hospital|allerg|طفح|حساسية|أعراض|اعراض/.test(T),comp:/competitor|منافس/.test(T),ev:/dinner|event|symposium|congress|مؤتمر|عشا|ندوة/.test(T),sm:/sample|عينة|عينات/.test(T)})};
+const approved=qs.find(x=>x.ref);const ev=evs[0];
+return !prof?onboard:html`<div>
+<header className="hd px-4 pt-3 pb-2 sticky top-0 z-20">
+<div className="flex items-center justify-between"><div><${Brand}/><button className="text-xs opacity-80 text-left" onClick=${()=>{setProf(null);setStep(1)}}>${prof?prof.name+" · "+prof.dept+" – "+prof.line+" – "+prof.area:""} ✎</button></div>
+<button className="relative p-2" onClick=${()=>say("3 new updates: Medical approval, event invite, Q4 promo kit")}><${I} n="bell" s=${20}/><span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-teal-300"></span></button></div>
+<nav className="flex gap-1 overflow-x-auto mt-2 -mx-1">${TABS.map(t=>html`<button key=${t} onClick=${()=>setTab(t)} className=${"px-3 py-1.5 rounded-full text-sm whitespace-nowrap font-medium "+(tab===t?"bg-teal-500 text-white":"text-slate-200")}>${t}</button>`)}</nav></header>
+<main className="max-w-3xl mx-auto p-3 space-y-3 pb-24">
+
+${tab==="Hub"&&html`<div className="space-y-3"><div className="hd rounded-2xl p-4"><div className="text-xs" style=${{color:"#F7941D",letterSpacing:3}}>WELCOME BACK</div><div className="text-xl font-bold" style=${{color:"#F7C873"}}>${prof?prof.name:""}</div><div className="text-sm opacity-80">${prof?prof.dept+" · "+prof.line+" · "+prof.area:""}</div></div>
+<div className="flex gap-2 overflow-x-auto">${Object.keys(DEPTS).map(d=>html`<button key=${d} onClick=${()=>setDept(d)} className=${"btn2 whitespace-nowrap "+(dept===d?"!bg-teal-600 !text-white !border-teal-600":"")}>${d}</button>`)}</div>
+<div className="card"><h3 className="font-bold mb-2">Quarterly Focus – ${dept}</h3><div className="grid grid-cols-2 gap-2">${D.q.map(([a,b])=>html`<div key=${a} className="rounded-lg p-2" style=${{background:"var(--bg)"}}><div className="text-teal-600 font-bold text-sm">${a}</div><div className="text-sm">${b}</div></div>`)}</div>
+<div className="mt-3 text-sm font-semibold">Latest updates</div>${D.up.map(u=>html`<div key=${u} className="text-sm mu">• ${u}</div>`)}</div>
+<h3 className="font-bold">Who’s Who</h3>
+${D.team.map(([n,t,b])=>html`<div key=${n} className="card flex items-center gap-3"><div className="w-11 h-11 rounded-full hd flex items-center justify-center font-bold">${n.replace("Dr. ","").split(" ").map(w=>w[0]).join("")}</div>
+<div className="flex-1 min-w-0"><div className="font-semibold">${n}</div><div className="text-sm text-teal-600">${t}</div><div className="text-xs mu">${b}</div></div>
+<div className="flex gap-1"><button className="btn2" onClick=${()=>say("Calling "+n+"…")}><${I} n="phone"/></button><button className="btn2" onClick=${()=>say("Message drafted to "+n)}><${I} n="mail"/></button></div></div>`)}</div>`}
+
+${tab==="Submit"&&html`<div className="space-y-3"><div className="card space-y-2"><h3 className="font-bold">New Idea / Request</h3>
+<select className="inp" value=${fd} onChange=${e=>{setFd(e.target.value);setF({})}}>${Object.keys(FORMS).map(d=>html`<option key=${d}>${d}</option>`)}</select>
+${FORMS[fd].map(l=>html`<div key=${l}><label className="text-xs mu">${l}</label><${l.includes("Query")||l.includes("Insight")||l.includes("Proposal")||l.includes("Feedback")?"textarea":"input"} className="inp" value=${f[l]||""} onChange=${e=>setF({...f,[l]:e.target.value})}/></div>`)}
+<button className="btn" onClick=${submit}><${I} n="send"/> Submit to ${fd}</button></div>
+<h3 className="font-bold">My Submissions</h3>
+${subs.map(s=>html`<div key=${s.id} className="card flex items-center gap-2"><div className="flex-1"><div className="text-sm font-semibold">${s.t}</div><div className="text-xs mu">#${s.id} · ${s.d}</div></div><${Badge} s=${s.s}/><button className="btn2" title="Simulate department action" onClick=${()=>setSubs(subs.map(x=>x.id===s.id?{...x,s:next(x.s)}:x))}>Advance</button></div>`)}</div>`}
+
+${tab==="Medical AI"&&html`<div className="space-y-3"><div className="card space-y-2"><h3 className="font-bold"><${I} n="spark"/> Scientific Query</h3>
+<textarea className="inp" placeholder="e.g. Dr. asks: any rash reported with Refluxa in elderly patients?" value=${q} onChange=${e=>setQ(e.target.value)}/>
+<button className="btn" onClick=${ask}>Generate AI draft</button></div>
+${qs.map((x,i)=>html`<div key=${x.id} className="card space-y-2" style=${{borderColor:x.ref?"#10b981":"#f59e0b"}}>
+<div className="text-sm font-semibold">Q: ${x.q}</div>
+${x.pv&&html`<div className="text-sm p-2 rounded-lg bg-rose-100 text-rose-800"><${I} n="alert"/> Possible adverse event detected. Automatically flagged to Pharmacovigilance (PV).</div>`}
+${x.ref?html`<div className="p-2 rounded-lg bg-emerald-100 text-emerald-900 text-sm"><b><${I} n="shield"/> Officially Approved by Medical</b> · Ref ${x.ref}<div className="mt-1">${x.a}</div></div>`
+:html`<div className="p-2 rounded-lg bg-amber-100 text-amber-900 text-sm"><b><${I} n="lock"/> ${x.st}</b> – locked from field use<div className="mt-1 opacity-60 select-none" style=${{filter:"blur(3px)"}}>${x.a}</div></div>
+<button className="btn2" onClick=${()=>approve(i)}>Simulate Medical sign-off</button>`}</div>`)}
+<h3 className="font-bold"><${I} n="shield"/> Smart FAQ Vault</h3>
+${faq.map(([a,b,r])=>html`<div key=${r} className="card"><div className="text-sm font-semibold">${a}</div><div className="text-sm mu">${b}</div><div className="text-xs text-teal-600 mt-1">✓ ${r}</div></div>`)}</div>`}
+
+${tab==="Trends"&&html`<div className="space-y-3"><div className="card hd"><div className="font-bold"><${I} n="spark"/> AI Trend Clustering</div><div className="text-sm opacity-80">44 field observations from 62 reps grouped into 4 trends this month</div></div>
+${TR.map((t,i)=>html`<div key=${i} className="card space-y-1"><div className="flex justify-between"><span className=${"text-xs font-bold px-2 py-0.5 rounded-full "+(t[0]==="High"?"bg-rose-100 text-rose-800":t[0]==="Medium"?"bg-amber-100 text-amber-800":"bg-slate-200 text-slate-800")}>${t[0]} Priority</span><span className="text-xs mu">${t[4]}</span></div>
+<div className="font-semibold text-sm">${t[1]}</div><div className="h-2 rounded-full" style=${{background:"var(--bg)"}}><div className="h-2 rounded-full bg-teal-500" style=${{width:t[3]*5+"%"}}></div></div>
+<button className=${"btn2 "+(esc[i]?"!bg-emerald-100 !text-emerald-800":"")} onClick=${()=>{setEsc({...esc,[i]:1});say("Escalated to "+t[2])}}>${esc[i]?"✓ Escalated":"Escalate to "+t[2]}</button></div>`)}</div>`}
+
+${tab==="Co-Pilot"&&html`<div className="space-y-3"><div className="card space-y-2"><h3 className="font-bold">HCP Case & Action Log</h3>
+<select className="inp" value=${ld} onChange=${e=>setLd(+e.target.value)}>${DOCS.map((d,i)=>html`<option key=${i} value=${i}>${d[0]} – ${d[1]}</option>`)}</select>
+<select className="inp" value=${lo} onChange=${e=>setLo(e.target.value)}>${["Discuss new indication","Follow up on trial samples","Invite to upcoming event"].map(o=>html`<option key=${o}>${o}</option>`)}</select>
+<input className="inp" placeholder="Topics the doctor wants to discuss" value=${tp} onChange=${e=>setTp(e.target.value)}/>
+<input className="inp" placeholder="Requests (samples, materials, invitation…)" value=${rq} onChange=${e=>setRq(e.target.value)}/>
+<div className="flex gap-2"><select className="inp" value=${ng} onChange=${e=>setNg(e.target.value)}>${["Awareness","Interest","Trial","Negotiation","Prescribing"].map(o=>html`<option key=${o}>${o}</option>`)}</select><input className="inp" placeholder="Deal / negotiation progress" value=${dl} onChange=${e=>setDl(e.target.value)}/></div>
+<textarea className="inp" placeholder="Quick call notes…" value=${ln} onChange=${e=>setLn(e.target.value)}/>
+<div className="flex gap-2"><button className="btn" onClick=${()=>{setLogs([{d:ld,o:lo,n:ln,tp,rq,ng,dl},...logs]);setLn("");setTp("");setRq("");setDl("");say("Visit saved – you’ll get a reminder next time you’re near")}}>Save note</button>
+<button className="btn2" onClick=${()=>setPop(ld)}><${I} n="bell"/> Simulate Next Clinic Visit Pop-up</button></div></div>
+<div className="card space-y-2"><h3 className="font-bold"><${I} n="spark"/> Visit Voice Notes <span className="text-xs mu font-normal">– تسجيل الكلام أثناء الزيارة</span></h3>
+<div className="text-xs mu">Visit with ${DOCS[ld][0]} (selected above). Record only with the doctor’s consent.</div>
+<select className="inp" value=${lang} onChange=${e=>setLang(e.target.value)}><option value="en-US">English</option><option value="ar-EG">العربية (مصر)</option></select>
+<div className="flex gap-2 flex-wrap">${rec?html`<button className="btn !bg-rose-600" onClick=${stopRec}><span className="animate-pulse">●</span> Stop</button>`:html`<button className="btn" onClick=${startRec}>🎙 Start recording</button>`}<button className="btn2" onClick=${demo}>Play demo conversation</button></div>
+<textarea className="inp" rows="4" placeholder="Live transcript appears here (editable)…" value=${tr} onChange=${e=>setTr(e.target.value)}/>
+<button className="btn2" onClick=${analyze}><${I} n="spark"/> Analyze with AI</button>
+${an&&html`<div className="space-y-2 text-sm">
+<div><b>Products mentioned:</b> ${an.prods.join(", ")||"—"}</div>
+${an.pv&&html`<div className="p-2 rounded-lg bg-rose-100 text-rose-800"><${I} n="alert"/> Possible adverse event heard – must be reported to Pharmacovigilance. <button className="underline font-semibold" onClick=${()=>say("PV report created")}>Report to PV</button></div>`}
+${an.comp&&html`<div className="p-2 rounded-lg bg-amber-100 text-amber-900">Competitor insight detected. <button className="underline font-semibold" onClick=${()=>{setSubs([{id:Date.now()%1000+300,d:"Marketing",t:"Voice insight: "+DOCS[ld][0]+" compares with Competitor X",s:"Received"},...subs]);say("Sent to Marketing")}}>Send to Marketing</button></div>`}
+${an.ev&&html`<div className="p-2 rounded-lg bg-teal-100 text-teal-900">Interested in an event – add to the Events guest list.</div>`}
+${an.sm&&html`<div className="p-2 rounded-lg bg-teal-100 text-teal-900">Samples requested – follow-up task suggested.</div>`}
+<button className="btn" onClick=${()=>{setLogs([{d:ld,o:an.ev?"Invite to upcoming event":an.sm?"Follow up on trial samples":lo,n:tr},...logs]);setTr("");setAn(null);say("Saved to HCP log")}}>Save to HCP log</button></div>`}</div>
+${logs.map((l,i)=>html`<div key=${i} className="card text-sm"><b>${DOCS[l.d][0]}</b> · <span className="text-teal-600">${l.o}</span><div className="mu">${l.n||"—"}</div>${l.ng&&html`<div className="text-xs">Stage: <b>${l.ng}</b>${l.dl?" · "+l.dl:""}</div>`}${l.tp&&html`<div className="text-xs">Topics: ${l.tp}</div>`}${l.rq&&html`<div className="text-xs">Requested: ${l.rq}</div>`}</div>`)}
+${pop!==null&&html`<div className="fixed inset-0 z-30 flex items-end sm:items-center justify-center bg-black/60 p-3"><div className="w-full max-w-sm rounded-3xl p-4 space-y-2" style=${{background:"var(--card)",color:"var(--tx)",border:"1px solid var(--bd)"}}>
+<div className="flex justify-between items-center"><b className="text-teal-600"><${I} n="bell"/> Pre-Visit Alert</b><button onClick=${()=>setPop(null)}><${I} n="x"/></button></div>
+<div className="font-bold">${DOCS[pop][0]} <span className="mu text-sm font-normal">· ${DOCS[pop][1]}</span></div>
+<div className="text-xs p-2 rounded-lg bg-slate-200 text-slate-800">📍 You’re about 300 m from ${DOCS[pop][0]}’s clinic</div>
+<div className="text-sm"><b>Last visit:</b> ${lgOf(pop)?(lgOf(pop).n||"Visit logged"):DOCS[pop][2]}</div>
+${lgOf(pop)&&html`<div className="text-sm"><b>Where you left off:</b> ${lgOf(pop).ng}${lgOf(pop).dl?" – "+lgOf(pop).dl:""}</div>`}
+${lgOf(pop)&&lgOf(pop).tp&&html`<div className="text-sm"><b>He wants to discuss:</b> ${lgOf(pop).tp}</div>`}
+<div className="text-sm p-2 rounded-lg bg-teal-100 text-teal-900"><b>Today’s objective:</b> ${(logs.find(l=>l.d===pop)||{}).o||"Discuss new indication"}</div>
+<div className="text-sm p-2 rounded-lg" style=${{background:"var(--bg)"}}><b>💡 Tips for this visit</b>${tipsFor(lgOf(pop)).map(t=>html`<div key=${t}>• ${t}</div>`)}</div>
+<div className="text-sm p-2 rounded-lg bg-emerald-100 text-emerald-900"><b>New approved answer:</b> ${approved?approved.q+" ("+approved.ref+")":faq[0][0]+" ("+faq[0][2]+")"}</div>
+<div className="text-sm p-2 rounded-lg bg-amber-100 text-amber-900"><b>Matching event:</b> ${ev.t} · ${ev.d} · ${ev.v}</div>
+<button className="btn w-full" onClick=${()=>{setPop(null);say("Visit started")}}>Start visit</button></div></div>`}</div>`}
+
+${tab==="Events"&&html`<div className="space-y-3"><div className="flex gap-2 overflow-x-auto">${evs.map((e,i)=>html`<button key=${i} onClick=${()=>setEvI(i)} className=${"card !p-2 text-left min-w-[150px] "+(evI===i?"!border-teal-500":"")}><div className="text-teal-600 font-bold text-sm">${e.d}</div><div className="text-sm font-semibold">${e.t}</div><div className="text-xs mu">${e.v}</div></button>`)}</div>
+<div className="card"><h3 className="font-bold">${evs[evI].t}</h3><div className="text-sm mu">${evs[evI].d} · ${evs[evI].v} · Speaker: ${evs[evI].sp}</div></div>
+${["A","B"].map(l=>html`<div key=${l} className="card space-y-2"><h4 className="font-bold">${l==="A"?"Plan A – Primary invitees":"Plan B – Backup doctors"}</h4>
+${evs[evI][l].map((g,i)=>html`<div key=${g.n} className="flex items-center gap-2"><button onClick=${()=>cyc(l,i)} className="flex items-center gap-2 flex-1 text-left"><span className=${"w-6 h-6 rounded-md flex items-center justify-center border "+(g.s==="Confirmed"?"bg-emerald-500 border-emerald-500 text-white":g.s==="Declined"?"bg-rose-500 border-rose-500 text-white":"")}>${g.s==="Confirmed"?html`<${I} n="check" s=${14}/>`:g.s==="Declined"?html`<${I} n="x" s=${14}/>`:""}</span><span className="text-sm">${g.n}</span></button><${Badge} s=${g.s}/>
+${l==="B"&&html`<button className="btn2" onClick=${()=>promote(i)}><${I} n="up" s=${12}/> To Plan A</button>`}</div>`)}</div>`)}
+<div className="text-xs mu">Tap a doctor to cycle Pending → Confirmed → Declined.</div></div>`}
+</main>
+${toast&&html`<div className="fixed left-1/2 -translate-x-1/2 bottom-6 z-40 hd px-4 py-2 rounded-full text-sm shadow-lg">${toast}</div>`}
+</div>`}
+ReactDOM.createRoot(document.getElementById("root")).render(html`<${App}/>`);
+</script></body></html>
